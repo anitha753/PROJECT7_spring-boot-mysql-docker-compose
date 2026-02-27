@@ -1,4 +1,48 @@
 use image: hanvitha/myapp-book-store
+docker-compose up -d
+docker ps -a
+[root@ip-172-31-24-196 PROJECT7_spring-boot-mysql-docker-compose]# docker ps -a
+CONTAINER ID   IMAGE                       COMMAND                 STATUS             PORTS                                       NAMES
+7b944eec8e85   hanvitha/myapp-book-store   "java -jar /spring-b…"    Up     0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   project7_spring-boot-mysql-docker-compose-application-1
+d5edce5d540e   mysql:5.7                   "docker-entrypoint.s…"    Up     3306/tcp, 33060/tcp                         project7_spring-boot-mysql-docker-compose-mysqldb-1
+
+docker exec -it project7_spring-boot-mysql-docker-compose-mysqldb-1 /bin/bash
+bash-4.2# mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sbms               |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use sbms
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_sbms |
++----------------+
+| book           |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select * from book;
++---------+-------------+-----------+------------+
+| book_id | author_name | book_name | book_price |
++---------+-------------+-----------+------------+
+|       1 | anu1        | anu       |         10 |
+|       2 | vinu1       | vinu      |         20 |
+|       3 | hayan1      | hayan     |         30 |
++---------+-------------+-----------+------------+
+3 rows in set (0.00 sec)
+
 
 🔹 1. How do you reduce the size of a Docker image?
 
